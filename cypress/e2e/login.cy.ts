@@ -1,4 +1,4 @@
-import { LoginField } from "../support/types/login_field_types";
+import { Login } from "../support/interface/Login";
 
 describe('Test application login scenarios', () => {
 
@@ -14,7 +14,7 @@ describe('Test application login scenarios', () => {
 
   it('Login with invalid usernames to check error messages.', function() {
     cy.fixture('users').then((data) => {
-      const users: LoginField[] = data.users; 
+      const users: Login[] = data.users; 
 
       users.forEach(user => {
         cy.getByDataTest('username').clear();
