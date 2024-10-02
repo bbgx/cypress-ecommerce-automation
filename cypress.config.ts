@@ -11,6 +11,7 @@ export default defineConfig({
     baseUrl: 'https://www.saucedemo.com',
     specPattern: "cypress/e2e/**/*.{cy,spec}.{js,ts}",
     chromeWebSecurity: false,
+    experimentalRunAllSpecs: true,
     blockHosts: [
       "backtrace.io",
       "*backtrace.io",
