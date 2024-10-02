@@ -1,9 +1,16 @@
-import { defineConfig } from 'cypress'
+import { defineConfig } from 'cypress';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 export default defineConfig({
+  env: {
+    username: process.env.TEST_USERNAME,
+    password: process.env.TEST_PASSWORD,
+  },
   e2e: {
     baseUrl: 'https://www.saucedemo.com',
     specPattern: "cypress/e2e/**/*.{cy,spec}.{js,ts}",
-    blockHosts: ["https://events.backtrace.io"],
+    chromeWebSecurity: false,
+    blockHosts: ["backtrace.io", "*backtrace.io", "*.backtrace.io", "google-analytics.com", "*google-analytics.com", "*.google-analytics.com"],
   },
-})
+});

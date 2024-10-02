@@ -26,6 +26,9 @@ importers:
       cypress-parallel:
         specifier: ^0.14.0
         version: 0.14.0(cypress-multi-reporters@1.6.4(mocha@9.2.2))
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       eslint:
         specifier: ^9.11.1
         version: 9.11.1
@@ -461,6 +464,10 @@ packages:
   diff@5.0.0:
     resolution: {integrity: sha512-/VTCrvm5Z0JGty/BWHljh+BAiw3IK+2j87NGMu8Nwc/f48WoDAC395uomO9ZD117ZOBaHmkX1oyLvkVM/aIT3w==}
     engines: {node: '>=0.3.1'}
+
+  dotenv@16.4.5:
+    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
+    engines: {node: '>=12'}
 
   ecc-jsbn@0.1.2:
     resolution: {integrity: sha512-eh9O+hwRHNbG4BLTjEl3nw044CkGm5X6LoaCf7LPp7UU8Qrt47JYNi6nPX8xjW97TKGKm1ouctg0QSpZe9qrnw==}
@@ -1804,6 +1811,8 @@ snapshots:
   delayed-stream@1.0.0: {}
 
   diff@5.0.0: {}
+
+  dotenv@16.4.5: {}
 
   ecc-jsbn@0.1.2:
     dependencies:
