@@ -7,7 +7,8 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "cy:parallel": "cypress-parallel -s cy:run -t 5 -d './cypress/e2e'",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "Bernardo Bugmann <bernardo_bugmann@protonmail.com>",
@@ -22,6 +23,7 @@
     "dotenv": "^16.4.5",
     "eslint": "^9.11.1",
     "globals": "^15.9.0",
+    "husky": "^9.1.6",
     "typescript": "^5.6.2",
     "typescript-eslint": "^8.8.0"
   }
