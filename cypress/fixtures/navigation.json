@@ -1,0 +1,20 @@
+{
+  "menuLinks": [
+    {
+      "href": "#",
+      "text": "All Items"
+    },
+    {
+      "href": "https://saucelabs.com/",
+      "text": "About"
+    },
+    {
+      "href": "#",
+      "text": "Logout"
+    },
+    {
+      "href": "#",
+      "text": "Reset App State"
+    }
+  ]
+}
