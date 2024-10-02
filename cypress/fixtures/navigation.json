@@ -1,18 +1,22 @@
 {
-  "menuLinks": [
+  "menuLink": [
     {
+      "attr": "inventory-sidebar-link",
       "href": "#",
       "text": "All Items"
     },
     {
+      "attr": "about-sidebar-link",
       "href": "https://saucelabs.com/",
       "text": "About"
     },
     {
+      "attr": "logout-sidebar-link",
       "href": "#",
       "text": "Logout"
     },
     {
+      "attr": "reset-sidebar-link",
       "href": "#",
       "text": "Reset App State"
     }
