@@ -1,4 +1,4 @@
-import { LoginField } from "../../support/types/login_field_types";
+import { LoginField } from "../support/types/login_field_types";
 
 describe('Test application login scenarios', () => {
 
