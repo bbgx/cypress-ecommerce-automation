@@ -23,3 +23,11 @@ declare global {
     }
   }
 }
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      getByClass: typeof getByClass;
+    }
+  }
+}

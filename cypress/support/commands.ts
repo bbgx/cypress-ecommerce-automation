@@ -2,10 +2,16 @@ import {
   LOGIN_PAGE,
 } from '../support/constants';
 
+// Selectors cmds
 Cypress.Commands.add('getByDataTest', (selector, ...args) => {
   return cy.get(`[data-test=${selector}]`, ...args);
 });
 
+Cypress.Commands.add('getByClass', (selector, ...args) => {
+  return cy.get(`.${selector}`, ...args);
+});
+
+// Behavior cmds
 Cypress.Commands.add('submitLoginForm', (username, password) => {
   cy.getByDataTest('username').should('be.visible');
   cy.getByDataTest('username').type(username);
