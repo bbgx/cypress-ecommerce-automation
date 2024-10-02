@@ -31,3 +31,11 @@ declare global {
     }
   }
 }
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      openSideMenu: typeof getByClass;
+    }
+  }
+}

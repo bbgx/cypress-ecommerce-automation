@@ -24,5 +24,10 @@ Cypress.Commands.add('loginViaUi', (username, password) => {
   cy.getByDataTest('username').type(username);
   cy.getByDataTest('password').type(password);
   cy.getByDataTest('login-button').click();
-  cy.get('.app_logo').should('be.visible').and('have.text', LOGIN_PAGE.LOGIN_LOGO_TXT);
+  cy.getByClass('app_logo').should('be.visible').and('have.text', LOGIN_PAGE.LOGIN_LOGO_TXT);
+});
+
+Cypress.Commands.add('openSideMenu', () => {
+  cy.getByClass('bm-burger-button').click();
+  cy.getByClass('bm-cross-button').should('be.visible');
 });
