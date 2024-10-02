@@ -11,6 +11,15 @@ export default defineConfig({
     baseUrl: 'https://www.saucedemo.com',
     specPattern: "cypress/e2e/**/*.{cy,spec}.{js,ts}",
     chromeWebSecurity: false,
-    blockHosts: ["backtrace.io", "*backtrace.io", "*.backtrace.io", "google-analytics.com", "*google-analytics.com", "*.google-analytics.com"],
+    blockHosts: [
+      "backtrace.io",
+      "*backtrace.io",
+      "*.backtrace.io",
+      "google-analytics.com",
+      "*google-analytics.com",
+      "*.google-analytics.com",
+      "*sentry.io",
+      "*.sentry.io",
+    ],
   },
 });
