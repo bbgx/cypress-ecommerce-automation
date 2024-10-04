@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  pages: write  # Add permission to write to GitHub Pages
 
 jobs:
   Run_test:
@@ -36,5 +37,16 @@ jobs:
         with:
           start: pnpm cy:run
         env:
-          CYPRESS_username: ${{secrets.TEST_USERNAME}}
-          CYPRESS_password: ${{secrets.TEST_PASSWORD}}
+          CYPRESS_username: ${{ secrets.TEST_USERNAME }}
+          CYPRESS_password: ${{ secrets.TEST_PASSWORD }}
+
+      - name: Generate Allure Report
+        run: pnpm allure:report
+
+      - name: Deploy Allure Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report  # The directory containing the generated Allure report
+          publish_branch: gh-pages  # The branch to deploy the report to
+          cname: yourdomain.com  # Optional: your custom domain
