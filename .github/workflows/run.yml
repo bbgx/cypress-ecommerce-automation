@@ -1,0 +1,53 @@
+name: Cypress Tests using Cypress Docker Image with allure-results
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  Run_test:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [20.17.0]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Cypress tests
+        run: pnpm cy:run
+
+      - name: Create Allure report
+        if: always()
+        run: pnpm allure:report
+
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: allure-results-${{ github.run_id }}  # Unique name for each run
+          path: ./allure-results
+
+      - name: Deploy Allure report to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.1.0
+        if: always()
+        with:
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use secrets to store sensitive information
+          BRANCH: master 
+          FOLDER: allure-results 
+          PUBLISH_BRANCH: gh-pages
+          TARGET_FOLDER: docs

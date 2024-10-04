@@ -132,3 +132,7 @@ dist
 # cypress
 runner-results/
 cypress/screenshots/
+
+# allure
+allure-report/
+allure-results/
