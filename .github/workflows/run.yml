@@ -31,32 +31,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run Cypress tests
-        run: pnpm cy:run
-
-      - name: Create Allure report
-        if: always()
-        run: pnpm allure:report
-
-      - name: Get Allure history
-        uses: actions/checkout@v3
-        if: always()
-        continue-on-error: true
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
-            ref: allure
-            path: allure
-
-      - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@master
-        if: always()
-        with:
-            allure_results: allure-results
-            gh_pages: allure
-
-      - name: Deploy report to Github Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_branch: allure
-            publish_dir: allure-history
+          start: pnpm cy:run
+          browser: chrome
