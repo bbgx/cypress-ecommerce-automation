@@ -3,7 +3,7 @@ name: Cypress Tests using Cypress Docker Image with allure-results
 on:
   push:
     branches: [master]
-    
+
 permissions:
   contents: write
 
@@ -38,19 +38,25 @@ jobs:
         if: always()
         run: pnpm allure:report
 
-      - name: Upload Allure results
-        uses: actions/upload-artifact@v3
+      - name: Get Allure history
+        uses: actions/checkout@v3
         if: always()
+        continue-on-error: true
         with:
-          name: allure-results-${{ github.run_id }}  # Unique name for each run
-          path: ./allure-results
+            ref: allure
+            path: allure
 
-      - name: Deploy Allure report to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.1.0
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@master
         if: always()
         with:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use secrets to store sensitive information
-          BRANCH: master 
-          FOLDER: allure-results 
-          PUBLISH_BRANCH: gh-pages
-          TARGET_FOLDER: docs
+            allure_results: allure-results
+            gh_pages: allure
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_branch: allure
+            publish_dir: allure-history
