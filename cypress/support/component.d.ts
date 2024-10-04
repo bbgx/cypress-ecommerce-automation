@@ -39,3 +39,19 @@ declare global {
     }
   }
 }
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      selectSortOption(option: 'hilo' | 'lohi' | 'za' | 'az'): Chainable<Element>;
+    }
+  }
+}
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      getAndSortInventoryItems(dataTest: string, isPrice: boolean, order: 'asc' | 'desc'): Chainable<string[] | number[]>;
+    }
+  }
+}

@@ -31,3 +31,38 @@ Cypress.Commands.add('openSideMenu', () => {
   cy.getByClass('bm-burger-button').click();
   cy.getByClass('bm-cross-button').should('be.visible');
 });
+
+Cypress.Commands.add('selectSortOption', (option) => {
+  const sortOptions: Record<string, string> = {
+    hilo: 'Price (high to low)',
+    lohi: 'Price (low to high)',
+    za: 'Name (Z to A)',
+    az: 'Name (A to Z)',
+  };
+
+  cy.getByDataTest('product-sort-container').select(option);
+  cy.getByDataTest('active-option').should('have.text', sortOptions[option]);
+});
+
+Cypress.Commands.add('getAndSortInventoryItems', (dataTest, isPrice, order) => {
+  const itemsArr: (string | number)[] = [];
+
+  cy.getByDataTest(dataTest).then((items) => {
+    items.each((index, element) => {
+      const itemText = isPrice
+        ? parseFloat(element.innerText.replace('$', ''))
+        : element.innerText;
+      itemsArr.push(itemText);
+    });
+
+    const sortedArr = itemsArr.sort((a, b) => {
+      if (isPrice) {
+        return order === 'asc' ? (a as number) - (b as number) : (b as number) - (a as number);
+      } else {
+        return order === 'asc' ? (a as string).localeCompare(b as string) : (b as string).localeCompare(a as string);
+      }
+    });
+
+    return sortedArr;
+  });
+});

@@ -49,18 +49,9 @@ describe('Assert if inventory listing is working correctly.', () => {
   });
 
   it('Assert if sorting items ascending in the list by name returns the correct list.', () => {
-    cy.getByDataTest('inventory-item-name').then((itemsName) => {
-      const productsNamesArr: string[] = [];
-
-      itemsName.each((index, element) => {
-        productsNamesArr.push(element.innerText);
-      });
-
-      const productsNamesAscending = productsNamesArr.sort();
-
-      cy.getByDataTest('product-sort-container').select('az');
-      cy.getByDataTest('active-option').should('have.text', 'Name (A to Z)');
-
+    cy.getAndSortInventoryItems('inventory-item-name', false, 'asc').then((itemsNameAsc) => {
+      cy.selectSortOption('az');
+      
       cy.getByDataTest('inventory-item-name').then((sortedItemsName) => {
         const sortedNamesArr: string[] = [];
 
@@ -68,23 +59,14 @@ describe('Assert if inventory listing is working correctly.', () => {
           sortedNamesArr.push(element.innerText);
         });
 
-        expect(sortedNamesArr).to.deep.equal(productsNamesAscending);
+        expect(sortedNamesArr).to.deep.equal(itemsNameAsc);
       });
     });
   });
 
   it('Assert if sorting items descending in the list by name returns the correct list.', () => {
-    cy.getByDataTest('inventory-item-name').then((itemsName) => {
-      const productsNamesArr: string[] = [];
-
-      itemsName.each((index, element) => {
-        productsNamesArr.push(element.innerText);
-      });
-
-      const productsNamesAscending = productsNamesArr.reverse();
-
-      cy.getByDataTest('product-sort-container').select('za');
-      cy.getByDataTest('active-option').should('have.text', 'Name (Z to A)');
+    cy.getAndSortInventoryItems('inventory-item-name', false, 'desc').then((itemsNameDesc) => {
+      cy.selectSortOption('za');
 
       cy.getByDataTest('inventory-item-name').then((sortedItemsName) => {
         const sortedNamesArr: string[] = [];
@@ -93,25 +75,15 @@ describe('Assert if inventory listing is working correctly.', () => {
           sortedNamesArr.push(element.innerText);
         });
 
-        expect(sortedNamesArr).to.deep.equal(productsNamesAscending);
+        expect(sortedNamesArr).to.deep.equal(itemsNameDesc);
       });
     });
   });
 
   it('Assert if sorting items ascending in the list by price returns the correct list.', () => {
-    cy.getByDataTest('inventory-item-price').then((itemsPrices) => {
-      const productsPricesArr: number[] = [];
-
-      itemsPrices.each((index, element) => {
-        const productPriceText = element.innerText;
-        const productPriceValue = parseFloat(productPriceText.replace('$', ''));
-        productsPricesArr.push(productPriceValue);
-      });
-
-      const productsPricesAscending = productsPricesArr.sort((a, b) => (a - b));
-      cy.getByDataTest('product-sort-container').select('lohi');
-      cy.getByDataTest('active-option').should('have.text', 'Price (low to high)');
-
+    cy.getAndSortInventoryItems('inventory-item-price', true, 'asc').then((itemsPricesAsc) => {
+      cy.selectSortOption('lohi');
+      
       cy.getByDataTest('inventory-item-price').then((sortedItemsPrices) => {
         const sortedPricesArr: number[] = [];
 
@@ -121,25 +93,15 @@ describe('Assert if inventory listing is working correctly.', () => {
           sortedPricesArr.push(productPriceValue);
         });
 
-        expect(sortedPricesArr).to.deep.equal(productsPricesAscending);
+        expect(sortedPricesArr).to.deep.equal(itemsPricesAsc);
       });
     });
   });
 
   it('Assert if sorting items descending in the list by price returns the correct list.', () => {
-    cy.getByDataTest('inventory-item-price').then((itemsPrices) => {
-      const productsPricesArr: number[] = [];
-
-      itemsPrices.each((index, element) => {
-        const productPriceText = element.innerText;
-        const productPriceValue = parseFloat(productPriceText.replace('$', ''));
-        productsPricesArr.push(productPriceValue);
-      });
-
-      const productsPricesAscending = productsPricesArr.sort((a, b) => (b - a));
-      cy.getByDataTest('product-sort-container').select('hilo');
-      cy.getByDataTest('active-option').should('have.text', 'Price (high to low)');
-
+    cy.getAndSortInventoryItems('inventory-item-price', true, 'desc').then((itemsPricesDesc) => {
+      cy.selectSortOption('hilo');
+      
       cy.getByDataTest('inventory-item-price').then((sortedItemsPrices) => {
         const sortedPricesArr: number[] = [];
 
@@ -149,7 +111,7 @@ describe('Assert if inventory listing is working correctly.', () => {
           sortedPricesArr.push(productPriceValue);
         });
 
-        expect(sortedPricesArr).to.deep.equal(productsPricesAscending);
+        expect(sortedPricesArr).to.deep.equal(itemsPricesDesc);
       });
     });
   });
