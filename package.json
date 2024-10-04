@@ -1,5 +1,5 @@
 {
-  "name": "cypress-ecommerce-automation-",
+  "name": "cypress-ecommerce-automation",
   "version": "1.0.0",
   "description": "Cypress project to test Sauce Labs e-commerce demo app (Swag Labs) ",
   "main": "index.js",
