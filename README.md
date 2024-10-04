@@ -3,7 +3,7 @@
 ![Cypress](https://img.shields.io/badge/Cypress-v9.6.0-brightgreen)
 ![Node.js](https://img.shields.io/badge/Node.js-v20.17.0-blue)
 ![License](https://img.shields.io/badge/license-WTFPL-brightgreen)
-[![Cypress Tests with Allure Report](https://github.com/bbgx/cypress-ecommerce-automation-/actions/workflows/run.yml/badge.svg)](https://github.com/bbgx/cypress-ecommerce-automation-/actions/workflows/run.yml)
+[![Cypress Tests with Allure Report](https://github.com/bbgx/cypress-ecommerce-automation/actions/workflows/run.yml/badge.svg)](https://github.com/bbgx/cypress-ecommerce-automation/actions/workflows/run.yml)
 
 ## 📖 Description
 Cypress E-commerce Automation is a robust testing framework designed for automating end-to-end tests of the Sauce Labs e-commerce demo application (Swag Labs). This repository encompasses a collection of tests that ensure the application’s functionality and performance.
@@ -33,8 +33,8 @@ Cypress E-commerce Automation is a robust testing framework designed for automat
 ## 📥 Installation
 1. Clone the repository:
   ```bash
-  └─$ git clone https://github.com/bbgx/cypress-ecommerce-automation-.git
-  └─$ cd cypress-ecommerce-automation-
+  └─$ git clone https://github.com/bbgx/cypress-ecommerce-automation.git
+  └─$ cd cypress-ecommerce-automation
   ```
 2. Install dependencies:
   ```bash
@@ -59,7 +59,7 @@ Generate Allure reports after executing tests:
 This will create an Allure report in the allure-report directory.
 
 ## 🌐 Deployment
-Allure reports are automatically deployed to GitHub Pages on each push to the master branch using GitHub Actions. Access the reports [**HERE**](https://bbgx.github.io/cypress-ecommerce-automation-/)
+Allure reports are automatically deployed to GitHub Pages on each push to the master branch using GitHub Actions. Access the reports [**HERE**](https://bbgx.github.io/cypress-ecommerce-automation/)
 
 ## 🤝 Contributing
 No need to contribute. I'm using this repository just to study more about [**Page Actions**](https://www.cypress.io/blog/stop-using-page-objects-and-start-using-app-actions)
