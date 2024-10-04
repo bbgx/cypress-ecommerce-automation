@@ -35,4 +35,3 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           start: pnpm cy:run
-          browser: chrome
