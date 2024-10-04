@@ -3,6 +3,9 @@ name: Cypress Tests using Cypress Docker Image with allure-results
 on:
   push:
     branches: [master]
+    
+permissions:
+  contents: write
 
 jobs:
   Run_test:
