@@ -62,7 +62,7 @@ This will create an Allure report in the allure-report directory.
 Allure reports are automatically deployed to GitHub Pages on each push to the master branch using GitHub Actions. Access the reports [**HERE**](https://bbgx.github.io/cypress-ecommerce-automation/)
 
 ## 🤝 Contributing
-No need to contribute. I'm using this repository just to study more about [**Page Actions**](https://www.cypress.io/blog/stop-using-page-objects-and-start-using-app-actions)
+No need to contribute. I'm using this repository just to study more about [**App Actions**](https://www.cypress.io/blog/stop-using-page-objects-and-start-using-app-actions)
 
 ## 📄 License
 This project is licensed under the [WTFPL License](http://www.wtfpl.net/). See the `LICENSE` file for more information.
