@@ -66,3 +66,11 @@ Cypress.Commands.add('getAndSortInventoryItems', (dataTest, isPrice, order) => {
     return sortedArr;
   });
 });
+
+Cypress.Commands.add('addItemToCart', () => {
+  cy.getByDataTest('add-to-cart').click();
+});
+
+Cypress.Commands.add('removeItemFromCart', () => {
+  cy.getByDataTest('remove').click();
+});

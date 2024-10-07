@@ -35,7 +35,7 @@ declare global {
 declare global {
   namespace Cypress {
     interface Chainable {
-      openSideMenu: typeof getByClass;
+      openSideMenu: typeof openSideMenu;
     }
   }
 }
@@ -52,6 +52,22 @@ declare global {
   namespace Cypress {
     interface Chainable {
       getAndSortInventoryItems(dataTest: string, isPrice: boolean, order: 'asc' | 'desc'): Chainable<string[] | number[]>;
+    }
+  }
+}
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      addItemToCart: typeof addItemToCart;
+    }
+  }
+}
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      removeItemFromCart: typeof removeItemFromCart;
     }
   }
 }
