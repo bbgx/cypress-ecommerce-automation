@@ -23,7 +23,7 @@ describe('Assert if the checkout feature is working as it should.', () => {
     });
   });
 
-  it.only('Checkout two items and check if the total sum of the price matches.', () => {
+  it('Checkout two items and check if the total sum of the price matches.', () => {
     cy.addItemToCart('add-to-cart-sauce-labs-bike-light');
     cy.addItemToCart('add-to-cart-sauce-labs-backpack');
 
