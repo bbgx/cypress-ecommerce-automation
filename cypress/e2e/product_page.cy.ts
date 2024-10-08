@@ -34,7 +34,7 @@ describe('Test product page functionalities and information.', () => {
   it('Assert if "Add to cart" button inside product page is working correctly.', () => {
     cy.getByDataTest('inventory-item-name').first().click();
 
-    cy.addItemToCart();
+    cy.addItemToCart('add-to-cart');
 
     cy.getByDataTest('shopping-cart-badge')
       .should('have.text', '1');
@@ -43,7 +43,7 @@ describe('Test product page functionalities and information.', () => {
   it('Assert if "Remove" button inside product page removes the added item from shopping cart.', () => {
     cy.getByDataTest('inventory-item-name').first().click();
 
-    cy.addItemToCart();
+    cy.addItemToCart('add-to-cart');
 
     cy.removeItemFromCart();
 
@@ -55,7 +55,7 @@ describe('Test product page functionalities and information.', () => {
     // This test will break since the reset app state do not reset the "Add to cart" button state 
     cy.getByDataTest('inventory-item-name').first().click();
 
-    cy.addItemToCart();
+    cy.addItemToCart('add-to-cart');
 
     cy.openSideMenu();
     cy.getByDataTest(SIDEBAR_MENU_ITEMS.RESET_APP_STATE).click();
