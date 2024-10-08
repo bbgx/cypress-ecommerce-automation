@@ -74,3 +74,21 @@ Cypress.Commands.add('addItemToCart', () => {
 Cypress.Commands.add('removeItemFromCart', () => {
   cy.getByDataTest('remove').click();
 });
+
+Cypress.Commands.add('fillCheckoutFormAndContinue', (firstName, lastName, postalCode) => {
+  cy.getByDataTest('firstName').type(firstName);
+  cy.getByDataTest('lastName').type(lastName);
+  cy.getByDataTest('postalCode').type(postalCode);
+
+  cy.getByDataTest('continue').click();
+});
+
+Cypress.Commands.add('addItemToCart', (dataTest: string) => {
+  cy.getByDataTest(dataTest).click();
+});
+
+Cypress.Commands.add('getItemPrice', (index: number): Cypress.Chainable<number> => {
+  return cy.getByDataTest('inventory-item-price').eq(index).invoke('text').then((price: string) => {
+    return parseFloat(price.replace(/[$,]/g, ''));
+  });
+});
