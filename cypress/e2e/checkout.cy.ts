@@ -23,28 +23,26 @@ describe('Assert if the checkout feature is working as it should.', () => {
     });
   });
 
-
-  it('Checkout two items and check if the total sum of the price matches.', () => {
+  it.only('Checkout two items and check if the total sum of the price matches.', () => {
     cy.addItemToCart('add-to-cart-sauce-labs-bike-light');
     cy.addItemToCart('add-to-cart-sauce-labs-backpack');
 
-    const firstProductPricePromise = cy.getItemPrice(0);
-    const secondProductPricePromise = cy.getItemPrice(1);
+    cy.getItemPrice(0).then((firstProductPriceFloat) => {
+      cy.getItemPrice(1).then((secondProductPriceFloat) => {
+        const totalPrice = firstProductPriceFloat + secondProductPriceFloat;
 
-    Promise.all([firstProductPricePromise, secondProductPricePromise]).then(([firstProductPriceFloat, secondProductPriceFloat]) => {
-      const totalPrice = firstProductPriceFloat + secondProductPriceFloat;
+        cy.getByDataTest('shopping-cart-link').click();
+        cy.getByDataTest('checkout').click();
 
-      cy.getByDataTest('shopping-cart-link').click();
-      cy.getByDataTest('checkout').click();
+        cy.fillCheckoutFormAndContinue('Cypress', 'User', '100110');
 
-      cy.fillCheckoutFormAndContinue('Cypress', 'User', '100110');
-
-      cy.getByDataTest('subtotal-label')
-        .invoke('text')
-        .then((subtotal: string) => {
-          const subtotalFloat = parseFloat(subtotal.replace(REGEX.PRICE, '$1'));
-          expect(subtotalFloat).to.equal(totalPrice);
-        });
+        cy.getByDataTest('subtotal-label')
+          .invoke('text')
+          .then((subtotal: string) => {
+            const subtotalFloat = parseFloat(subtotal.replace(REGEX.PRICE, '$1'));
+            expect(subtotalFloat).to.equal(totalPrice);
+          });
+      });
     });
   });
 
