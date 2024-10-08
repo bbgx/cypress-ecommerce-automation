@@ -8,3 +8,7 @@ export const SIDEBAR_MENU_ITEMS = {
   ABOUT: 'about-sidebar-link',
   RESET_APP_STATE: 'reset-sidebar-link',
 };
+
+export const REGEX = {
+  PRICE: /.*\$\s*([0-9,.]+)/,
+};
