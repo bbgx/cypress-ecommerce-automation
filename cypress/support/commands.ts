@@ -67,7 +67,7 @@ Cypress.Commands.add('getAndSortInventoryItems', (dataTest, isPrice, order) => {
   });
 });
 
-Cypress.Commands.add('addItemToCart', () => {
+Cypress.Commands.add('addItemToCartFromItemPage', () => {
   cy.getByDataTest('add-to-cart').click();
 });
 
@@ -91,4 +91,19 @@ Cypress.Commands.add('getItemPrice', (index: number): Cypress.Chainable<number> 
   return cy.getByDataTest('inventory-item-price').eq(index).invoke('text').then((price: string) => {
     return parseFloat(price.replace(/[$,]/g, ''));
   });
+});
+
+Cypress.Commands.add('addAllItemsToCart', () => {
+  cy.getByClass('btn_inventory').each((item: JQuery<HTMLElement>) => {
+    cy.wrap(item).click();
+  });
+});
+
+Cypress.Commands.add('assertCartItemsCount', (expectedCount: number) => {
+  cy.getByDataTest('shopping-cart-badge')
+    .should('exist')
+    .and('have.text', expectedCount.toString());
+  cy.getByDataTest('inventory-item')
+    .should('exist')
+    .and('have.length', expectedCount);
 });

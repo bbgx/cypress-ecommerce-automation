@@ -3,7 +3,8 @@ import {
   loginViaUi, 
   submitLoginForm, 
   getByClass, 
-  openSideMenu, 
+  openSideMenu,
+  addItemToCartFromItemPage,
   addItemToCart, 
   removeItemFromCart, 
   fillCheckoutFormAndContinue 
@@ -19,11 +20,14 @@ declare global {
       openSideMenu: typeof openSideMenu;
       selectSortOption(option: 'hilo' | 'lohi' | 'za' | 'az'): Chainable<Element>;
       getAndSortInventoryItems(dataTest: string, isPrice: boolean, order: 'asc' | 'desc'): Chainable<string[] | number[]>;
+      addItemToCartFromItemPage: typeof addItemToCartFromItemPage;
       addItemToCart: typeof addItemToCart;
       removeItemFromCart: typeof removeItemFromCart;
       fillCheckoutFormAndContinue: typeof fillCheckoutFormAndContinue;
       addItemToCart(dataTest: string): Chainable<void>;
       getItemPrice(index: number): Chainable<number>;
+      addAllItemsToCart(): Chainable<void>;
+      assertCartItemsCount(expectedCount: number): Chainable<void>;
     }
   }
 }

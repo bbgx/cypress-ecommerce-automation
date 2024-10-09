@@ -11,11 +11,7 @@ describe('Assert if inventory listing is working correctly.', () => {
     cy.getByClass('btn_inventory').then((inventoryItems: string) => {
       const totalItems = inventoryItems.length;
 
-      cy.wrap(inventoryItems).each((item, index) => {
-        cy.wrap(item).click();
-        cy.getByDataTest('shopping-cart-badge')
-          .should('have.text', (index + 1).toString());
-      });
+      cy.addAllItemsToCart();
 
       cy.getByDataTest('shopping-cart-badge')
         .should('have.text', totalItems.toString());
@@ -23,11 +19,7 @@ describe('Assert if inventory listing is working correctly.', () => {
   });
 
   it('Assert if "Remove" button removes the item from the cart counter when clicked.', () => {
-    cy.getByClass('btn_inventory').then((inventoryItems: string) => {
-      cy.wrap(inventoryItems).each((item) => {
-        cy.wrap(item).click();
-      });
-    });
+    cy.addAllItemsToCart();
 
     cy.getByClass('btn_inventory').then((inventoryItems: string) => {
       const totalItems = inventoryItems.length;
