@@ -30,7 +30,6 @@ describe('Test product page functionalities and information.', () => {
     });
   });
 
-
   it('Assert if "Add to cart" button inside product page is working correctly.', () => {
     cy.getByDataTest('inventory-item-name').first().click();
 
@@ -62,7 +61,5 @@ describe('Test product page functionalities and information.', () => {
 
     cy.getByDataTest('shopping-cart-badge').should('not.exist');
     cy.getByDataTest('add-to-cart').should('be.visible');
-    cy.getByDataTest('shopping-cart-badge')
-      .should('not.exist');
   });
 });
