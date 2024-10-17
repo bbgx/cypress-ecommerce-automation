@@ -6,16 +6,16 @@ describe('Test navigation links on hamburger menu.', () => {
     cy.loginViaUi(Cypress.env('username'), Cypress.env('password'));
   });
 
-  it('Assert menu links consistency.', () => {
+  it.only('Assert menu links consistency.', () => {
     cy.fixture('navigation').then(data => {
       const menuLink: Navigation[] = data.menuLink;
       
       cy.openSideMenu();
       
       menuLink.forEach(menuItem => {
-        cy.getByDataTest(menuItem.attr).should('be.visible');
         cy.getByDataTest(menuItem.attr)
-          .should('have.attr', 'href', menuItem.href)
+          .should('be.visible')
+          .and('have.attr', 'href', menuItem.href)
           .and('have.text', menuItem.text);
       });
     });
